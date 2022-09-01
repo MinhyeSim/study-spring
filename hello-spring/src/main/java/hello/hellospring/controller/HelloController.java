@@ -21,18 +21,28 @@ public class HelloController {
     }
 
     @GetMapping("hello-string")
-    @ResponseBody //http의 body 부분에 직접 입력하겠다.
+    @ResponseBody //http의 body 부분에 data를 직접 입력하겠다.
     public String helloString(@RequestParam("name")String name){
+
         return "hello" + name;
     }
-    
 
-
-
-
-
-
-
+    @GetMapping("hello-api")
+    @ResponseBody
+    public Hello helloApi(@RequestParam("name") String name){
+        Hello hello = new Hello();
+        hello.setName(name);
+        return hello;
+    }
+    static class Hello{
+        private String name;
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
 
 
 }
